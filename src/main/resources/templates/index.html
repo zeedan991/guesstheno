@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Guess The No</title>
+    <style>
+        body { font-family: Arial; text-align: center; background: #2c3e50; color: white; padding-top: 50px; }
+        .box { background: #34495e; padding: 20px; display: inline-block; border-radius: 10px; }
+        .msg { color: #f1c40f; font-size: 1.2em; margin: 15px; }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1>< WELCOME TO GUESS THE NUMBER ></h1>
+    <p>Computer has chosen a number from 0 to 100.</p>
+
+    <div th:if="${message}" class="msg">
+        <p th:text="${message}"></p>
+    </div>
+
+    <form th:if="${!gameOver}" action="/guess" method="post">
+        <input type="number" name="number" required>
+        <button type="submit">GUESS</button>
+    </form>
+
+    <div th:if="${gameOver}">
+        <a href="/reset"><button>PLAY AGAIN</button></a>
+    </div>
+</div>
+</body>
+</html>
